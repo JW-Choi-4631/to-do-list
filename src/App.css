@@ -1,0 +1,143 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  margin-left : 10px;
+  border-radius: 10px;
+  border : none;
+  width : 260px;
+  height : 40px;
+}
+
+button {
+  color : white;
+  font-weight: bold;
+  background-color: teal;
+  border-radius: 10px;
+  border : none;
+  width: 120px;
+}
+
+.AppBox {
+  max-width : 1200px;
+  max-height : 800px;
+  margin : 0 auto;
+}
+
+.title {
+  align-items: center;
+  border: 0.5px solid #ddd;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 0 20px
+}
+
+.inputBox {
+  justify-content: space-between;
+  display : flex;
+  padding : 30px;
+  background-color :whitesmoke;
+  border: 0.5px solid #ddd;
+  height: 40px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tables {
+  padding : 0 24px;
+}
+
+.TodoBox {
+  border: 2px solid teal;
+  border-radius: 10px;
+  width: 210px;
+  height: 110px;
+  padding: 0 12px 50px;
+}
+
+.ListBox {
+  display :flex;
+  flex-wrap:wrap;
+  gap : 10px;
+}
+
+.TodoBox button {
+  height : 30px;
+  width: 100px;
+  margin-top:20px;
+  background-color: white;
+  color : black;
+}
+
+.buttonBox {
+  display:flex;
+  justify-content: space-between;
+}
+
+.saveBtn:hover {
+  border : teal 2px solid;
+  background-color: white;
+  color : black;
+}
+
+.greenBtn {
+  border : green 1px solid;
+}
+
+.greenBtn:hover {
+  border : green 2px solid;
+}
+
+.redBtn {
+  border : red 1px solid;
+}
+
+.redBtn:hover {
+  border : red 2px solid;
+  background-color: red;
+}

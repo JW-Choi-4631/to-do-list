@@ -5,8 +5,10 @@ import Card from './component/card.jsx';
 
 function App() {
   // State 생성
-  const [title, setTitle] = useState('');
-  const [context, setContext] = useState('');
+  const [cardContext,setCardContext] = useState({
+    title:'',
+    context:'',
+  });
   const [toDoList, setToDoList] = useState([
     { 
       id : 1,
@@ -22,32 +24,30 @@ function App() {
     },
 ])
 
-  const newTitleSetHandler = (event)=>{
-    setTitle(event.target.value);     // 바뀔때마다 페이지 리랜더링으로 화면에 입력값 보여줌
-  }
-
-  const newContextSetHandler = (event)=>{
-    setContext(event.target.value);   // 바뀔때마다 페이지 리랜더링으로 화면에 입력값 보여줌
+  const newCardSetHandler = (event)=>{
+    setCardContext((cardContext)=>{
+      return { ...cardContext, [event.target.id]:event.target.value}
+    }); //함수형 업데이트 (매개변수로 현재state 값을 받아올 수 있음)
   }
 
   const makeNewCardHandler = () => {
-    if (title === '') {
+    console.log(cardContext);
+    if (cardContext.title === '') {
       alert('제목을 입력하세요!');
     }
-    else if (context === ''){
+    else if (cardContext.context === ''){
       alert('내용을 입력하세요!');
     }
     else {
       const newCard = {
         id : new Date().getTime() + Math.random(), // 중복값이 없는 id 생성
-        title, 
-        context,
+        title : cardContext.title, 
+        context : cardContext.context,
         isDone : false  // 처음 입력되는 값은 무조건 false
       };
       setToDoList([...toDoList, newCard]);
       // Card생성 후 input을 다시 빈 값으로 설정
-      setTitle('');
-      setContext('');
+      setCardContext({title:'', context:''});
     }
   }
 
@@ -86,9 +86,9 @@ function App() {
       <div className='inputBox'>
         <div className='input'>
           <label>제목</label>
-          <input type='text' value={title} onChange={newTitleSetHandler}/>
+          <input id='title' type='text' value={cardContext.title} onChange={newCardSetHandler}/>
           <label>내용</label>
-          <input type='text' value={context} onChange={newContextSetHandler}/>
+          <input id='context' type='text' value={cardContext.context}  onChange={newCardSetHandler}/>
         </div>
         <button className = 'saveBtn' onClick={makeNewCardHandler}>추가하기</button>
       </div>
@@ -97,8 +97,9 @@ function App() {
         <div className='ListBox'>
           {toDoList.map(list => {
             if (list.isDone === false) {
-              return <Card removefunc={removeCardHandler} changefunc={changeIsDoneHandler}>{list}</Card>
+              return <Card removefunc={removeCardHandler} changefunc={changeIsDoneHandler}>{list}</Card>;
             }
+            return null;
           })
           }
         </div>
@@ -108,8 +109,9 @@ function App() {
         <div className='ListBox'>
         {toDoList.map(list => {
             if (list.isDone === true) {
-              return <Card removefunc={removeCardHandler} changefunc={changeIsDoneHandler}>{list}</Card>
+              return <Card removefunc={removeCardHandler} changefunc={changeIsDoneHandler}>{list}</Card>;
             }
+            return null;
           })
           }
         </div>

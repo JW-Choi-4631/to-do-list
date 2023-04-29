@@ -60,21 +60,28 @@ function App() {
     }
   }
 
-  const changeIsDoneHandler = (changelist) => {
+  const changeIsDoneHandler = (changeCard) => {
 
-    const newToDoList = toDoList.filter((list) => list.id !== changelist.id); //해당 Card 제외한 배열 생성
-    let newCard = {}; // isDone 상태가 바뀐 새로운 객체 
+    // const newToDoList = toDoList.filter((list) => list.id !== changelist.id); //해당 Card 제외한 배열 생성
+    // let newCard = {}; // isDone 상태가 바뀐 새로운 객체 
 
-    if(changelist.isDone === false){
-      alert('수고하셨습니다!');
-      newCard = {...changelist, isDone : true};
-    }
-    else {
-      newCard = {...changelist, isDone : false};
-    }
+    // if(changeCard.isDone === false){
+    //   alert('수고하셨습니다!');
+    //   newCard = {...changeCard, isDone : true};
+    // }
+    // else {
+    //   newCard = {...changeCard, isDone : false};
+    // }
 
-    setToDoList([...newToDoList,newCard]) // 새로운 객체를 추가
+    // setToDoList([...newToDoList,newCard]) // 새로운 객체를 추가
 
+    const newToDoList = toDoList.map((cardList)=>{
+      if(cardList.id === changeCard.id){
+        return {...cardList, isDone: changeCard.isDone === true? false:true};
+      } 
+      return cardList;
+    })
+    setToDoList(newToDoList);
   }  
 
   return (
